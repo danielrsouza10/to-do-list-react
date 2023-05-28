@@ -1,6 +1,6 @@
-function AddToList(){
+function AddToList(props){
     return (
-        <li>Add To List Works</li>
+     <></>
     )
 }
 
