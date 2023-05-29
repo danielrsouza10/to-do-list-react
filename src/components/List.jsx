@@ -1,13 +1,21 @@
 import { useState } from "react";
+import { createElement } from "react";
 import AddToList from "./AddToList";
 
 function List() {
+  let items = ["Daniel", "Mariana", "Isabela"];
+  let [itemList, setItemList] = useState([]);
 
-  const [itemList, setItemList] = useState("")
 
   function addButtonHandler() {
-    setItemList(input);
+    //push new input into the array items
+    items.push(input);
+ 
+    setItemList(items.map((item) => <li>{item}</li>));
+    console.log(input);
   }
+
+  // const itemList = items.map((item) => <li>{item}</li>);
 
   const [input, setInput] = useState("");
 
@@ -17,20 +25,11 @@ function List() {
 
   return (
     <>
-      <h3>List Works</h3>
-      <input
-        type="text"
-        id="task"
-        placeholder="Add a task"
-        onChange={inputHandler}
+      <AddToList
+        onInputChange={inputHandler}
+        onClickButton={addButtonHandler}
       />
-      <button type="button" onClick={addButtonHandler}>
-        +
-      </button>
-      <ul>
-        <AddToList />
-        <li>{itemList}</li>
-      </ul>
+      <ul>{itemList}</ul>
     </>
   );
 }
